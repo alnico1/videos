@@ -1,0 +1,32 @@
+---
+- name: Install Docker on CentOS 9
+  hosts: all
+  become: true
+  tasks:
+    - name: Install required packages
+      yum:
+        name: 
+          - dnf-utils
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    - name: Add Docker repository
+      yum_repository:
+        name: docker-ce-stable
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable
+        description: Docker CE Stable - $basearch
+        enabled: yes
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+
+    - name: Install Docker
+      yum:
+        name: docker-ce
+        state: present
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
