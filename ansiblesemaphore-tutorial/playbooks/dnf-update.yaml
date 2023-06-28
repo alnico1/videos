@@ -1,0 +1,10 @@
+---
+- name: Update system using DNF
+  hosts: FE
+  become: true
+
+  tasks:
+    - name: Update packages
+      dnf:
+        name: '*'
+        state: latest
