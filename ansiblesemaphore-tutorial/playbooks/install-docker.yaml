@@ -1,6 +1,6 @@
 ---
 - name: Install Docker on CentOS 9
-  hosts: servers
+  hosts: web1
   become: true
   tasks:
     - name: Install required packages
