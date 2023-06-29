@@ -1,6 +1,6 @@
 ---
 - name: Update system using DNF
-  hosts: FE
+  hosts: servers
   become: true
 
   tasks:
